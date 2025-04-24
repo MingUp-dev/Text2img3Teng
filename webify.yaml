@@ -22,3 +22,8 @@ ignoreFiles:
 
 # 禁用pip和Python相关的自动检测
 disableAutoDeploy: true
+
+# HTTPS配置
+https:
+  enable: true
+  autoRenew: true
