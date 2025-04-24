@@ -7,3 +7,11 @@ environment:
 buildCommand: ""
 buildDir: ""
 outputPath: "."
+# 忽略Python相关文件，防止触发pip命令
+ignoreFiles:
+  - "*.py"
+  - "*.pyc"
+  - "__pycache__/"
+  - "venv/"
+  - ".env*"
+  - "requirements.txt"
