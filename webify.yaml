@@ -1,7 +1,9 @@
 environment:
   framework: static
-  language: javascript
+  language: html
   staticType: general
+  runtime: web
 
 buildCommand: ""
+buildDir: ""
 outputPath: "."
