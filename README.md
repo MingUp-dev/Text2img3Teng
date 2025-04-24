@@ -9,26 +9,22 @@
 - 支持多种图片风格（日漫、动漫、油画、水墨、国风Q版）
 - 前端直接调用腾讯云API生成图片
 
-## ⚠️ 重要：API密钥配置
+## 关于API密钥
 
-**部署前必须配置API密钥**：
+本项目支持两种方式配置API密钥：
 
-1. 打开 `index.html` 文件
-2. 找到以下代码（约在第175行）：
-```javascript
-// 默认API凭证
-const defaultSecretId = "";  // 部署前需要填写您的腾讯云SecretId
-const defaultSecretKey = ""; // 部署前需要填写您的腾讯云SecretKey
-```
-3. 将您的腾讯云API密钥填入这两个变量中
-4. 保存文件后再部署
+1. **默认方式**: 应用内置测试用API密钥，可直接使用（可能有使用限制）
 
-如何获取腾讯云API密钥：
+2. **自定义方式**: 通过`.env-example`文件指定您自己的API密钥
+   - 复制并修改`.env-example`文件，填入您的腾讯云SecretId和SecretKey
+   - 应用会优先使用.env-example中的密钥，如果未找到则使用默认密钥
+
+### 获取自己的API密钥
+
 1. 登录[腾讯云控制台](https://console.cloud.tencent.com/)
 2. 前往【访问管理】>【API密钥管理】
 3. 创建或查看您的SecretId和SecretKey
-
-**注意**：API密钥属于敏感信息，请勿将填写了真实密钥的代码上传到公开仓库！
+4. 将获取到的密钥填入`.env-example`文件
 
 ## 在线体验
 

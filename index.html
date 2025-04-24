@@ -167,38 +167,45 @@
         const generatedImage = document.getElementById('generatedImage');
         const promptInfo = document.getElementById('promptInfo');
         
-        // 默认API凭证 - 将从.env-example读取
-        let defaultSecretId = "";
-        let defaultSecretKey = "";
+        // 默认API凭证 - 硬编码测试密钥作为后备方案
+        let defaultSecretId = "AKIDzpTt785oJdlfOwGOI0Xt2xgEbpy1tjU3";
+        let defaultSecretKey = "QehaIn59zb2LWTDj292iDWccZP4jJkz2";
         
-        // 从.env-example文件加载API密钥
+        // 从.env-example文件加载API密钥，如果失败则使用硬编码密钥
         async function loadApiCredentials() {
             try {
                 const response = await fetch('.env-example');
                 if (!response.ok) {
-                    throw new Error(`无法加载.env-example文件: ${response.status}`);
+                    console.log('无法加载.env-example文件，将使用默认密钥');
+                    return; // 使用硬编码的默认密钥
                 }
                 
                 const text = await response.text();
                 const lines = text.split('\n');
                 
+                let foundId = false;
+                let foundKey = false;
+                
                 for (const line of lines) {
                     if (line.startsWith('SECRET_ID=')) {
-                        defaultSecretId = line.replace('SECRET_ID=', '').trim();
+                        const value = line.replace('SECRET_ID=', '').trim();
+                        if (value && value !== 'your_secret_id_here') {
+                            defaultSecretId = value;
+                            foundId = true;
+                        }
                     } else if (line.startsWith('SECRET_KEY=')) {
-                        defaultSecretKey = line.replace('SECRET_KEY=', '').trim();
+                        const value = line.replace('SECRET_KEY=', '').trim();
+                        if (value && value !== 'your_secret_key_here') {
+                            defaultSecretKey = value;
+                            foundKey = true;
+                        }
                     }
                 }
                 
-                console.log('API凭证已从.env-example加载');
-                
-                // 如果找不到有效的密钥，显示警告
-                if (!defaultSecretId || !defaultSecretKey) {
-                    showStatus("警告：.env-example中未找到有效的API密钥", "error");
-                }
+                console.log('尝试从.env-example加载API凭证', foundId ? '找到ID' : '未找到有效ID', foundKey ? '找到Key' : '未找到有效Key');
             } catch (error) {
-                console.error('加载API凭证失败:', error);
-                showStatus("无法加载API凭证，请检查.env-example文件", "error");
+                console.log('加载.env-example失败，将使用默认密钥:', error.message);
+                // 继续使用硬编码的默认密钥
             }
         }
         
