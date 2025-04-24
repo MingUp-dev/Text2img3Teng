@@ -1,0 +1,7 @@
+environment:
+  framework: static
+  language: javascript
+  staticType: general
+
+buildCommand: ""
+outputPath: "."

@@ -1,0 +1,11 @@
+{
+  "origins": [
+    {
+      "origin": "*",
+      "allowMethods": ["GET", "POST", "PUT", "DELETE", "HEAD"],
+      "allowHeaders": ["*"],
+      "exposeHeaders": ["Content-Length", "Content-Type", "Date"],
+      "maxAgeSeconds": 3600
+    }
+  ]
+} 
