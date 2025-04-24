@@ -15,3 +15,10 @@ ignoreFiles:
   - "venv/"
   - ".env*"
   - "requirements.txt"
+  - "**/*.py"
+  - "**/*.pyc"
+  - "**/__pycache__/"
+  - "**/venv/"
+
+# 禁用pip和Python相关的自动检测
+disableAutoDeploy: true
